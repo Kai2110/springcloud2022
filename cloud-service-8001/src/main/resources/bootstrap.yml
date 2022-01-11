@@ -1,0 +1,15 @@
+server:
+   port: 8001
+spring:
+   application:
+      name: cloud-service-8001
+   cloud:
+      nacos:
+         #将Nacos客服端注册到Nacos服务注册中心
+         discovery:
+            server-addr: 127.0.0.1:8848   #Nacos服务端地址
+management:
+   endpoints:
+      web:
+         exposure:
+            include: '*'

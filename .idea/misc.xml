@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="AllArgsConstructor" />
+    </list>
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/cloud2022/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-api-commons/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-base-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-service-9001/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-service-8001/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
