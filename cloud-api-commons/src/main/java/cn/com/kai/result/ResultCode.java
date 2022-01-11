@@ -1,8 +1,8 @@
-package cn.com.kai.common;
+package cn.com.kai.result;
 
 /**
  * ClassName:ResultCode
- * Package:cn.com.kai.common
+ * Package:cn.com.kai.result
  * Description:
  *
  * @Author:gkr
