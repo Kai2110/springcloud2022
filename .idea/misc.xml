@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/cloud-base-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/cloud-service-9001/pom.xml" />
         <option value="$PROJECT_DIR$/cloud-service-8001/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-service-9100-config/pom.xml" />
       </list>
     </option>
   </component>

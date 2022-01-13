@@ -18,7 +18,9 @@ public class CommonResult<T> {
     private String message;
     private T data;
 
-    private  CommonResult(){}
+    public  CommonResult(){
+
+    }
 
     public CommonResult(int code, String message, T data) {
         this.code = code;

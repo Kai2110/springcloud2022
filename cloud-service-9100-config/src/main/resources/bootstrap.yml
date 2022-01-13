@@ -1,0 +1,27 @@
+
+spring:
+   application:
+      name: cloud-service-9100-config
+   cloud:
+      nacos:
+         discovery:
+            #指定Nacos注册中心的地址，将该服务注册到注册中心
+            server-addr: 127.0.0.1:8848
+         config:
+            #指定Nacos配置中心的地址，从配置中心动态获取配置信息
+            server-addr: 127.0.0.1:8848
+            #指定命名空间ID：读取指定命名空间中的配置文件
+            #Nacos默认有一个public命名空间，在Nacos的命名空间可进行命名空间的添加。
+            namespace: eaa22ec1-7417-4a5a-ad96-0d52688e90c8
+            #指定组名：指定组名后，读取指定组下的配置文件
+            #在Nacos配置管理中新建配置文件时，配置文件有一个默认组DEFAULT_GROUP，可以对组进行修改
+            group: cloud2022-dev-group
+            #指定读取的配置文件的后缀名
+            file-extension: yaml
+management:
+   endpoints:
+      web:
+         exposure:
+            include: '*'
+server:
+  port: 9100

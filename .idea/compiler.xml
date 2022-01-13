@@ -11,13 +11,16 @@
         <module name="cloud-base-gateway" />
         <module name="cloud-service-8001" />
         <module name="cloud-service-9001" />
+        <module name="cloud-service-9100-config" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cloud-api-commons" target="1.8" />
+      <module name="cloud-base-config" target="1.8" />
       <module name="cloud-base-gateway" target="1.8" />
       <module name="cloud-service-8001" target="1.8" />
       <module name="cloud-service-9001" target="1.8" />
+      <module name="cloud-service-9100-config" target="1.8" />
       <module name="cloud2022" target="1.8" />
     </bytecodeTargetLevel>
   </component>
