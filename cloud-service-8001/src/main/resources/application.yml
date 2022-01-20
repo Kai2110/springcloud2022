@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+
+#openFeign远程调用超时处理
+ribbon:
+    ReadTimeout: 3000  #服务之间建立链接需要的时间，单位毫秒
+    ConnectTimeout: 3000 #建立链接后，从服务器读取可用资源需要的时间，单位毫秒
+
+# feigin默认支持ribbon进行负载均衡，关闭了hystrix的熔断处理
+# 如何配置了Ribbon的重试，hystrix的熔断超时时间要大于ribbon的超时时间，ribbon才会重试
+# 需要注意：Feign=Hystrix+Ribbon；Hystrix在最外层，然后再到Ribbon，最后里面的是http请求。
+# 因此要使ribbon的时间生效，需要对Hystrix的时间进行控制，且Hystrix的熔断时间必须大于Ribbon的 ( ConnectTimeout + ReadTimeout )
+feign:
+  hystrix:
+    enabled: true #开启feign的降级处理

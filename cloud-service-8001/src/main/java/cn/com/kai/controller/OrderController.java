@@ -3,10 +3,13 @@ package cn.com.kai.controller;
 import cn.com.kai.common.CommonResult;
 import cn.com.kai.domain.Order;
 import cn.com.kai.result.ResultCode;
+import cn.com.kai.rpc.OpenFeignTest;
+import org.springframework.expression.spel.ast.OpNE;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
