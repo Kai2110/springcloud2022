@@ -12,6 +12,8 @@
         <module name="cloud-service-8001" />
         <module name="cloud-service-9001" />
         <module name="cloud-service-9100-config" />
+        <module name="cloud-service-9200-sentinel" />
+        <module name="cloud-service-9300-cloudLock" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +23,8 @@
       <module name="cloud-service-8001" target="1.8" />
       <module name="cloud-service-9001" target="1.8" />
       <module name="cloud-service-9100-config" target="1.8" />
+      <module name="cloud-service-9200-sentinel" target="1.8" />
+      <module name="cloud-service-9300-cloudLock" target="1.8" />
       <module name="cloud2022" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/cloud-service-8001/cloud-service-8001.iml" filepath="$PROJECT_DIR$/cloud-service-8001/cloud-service-8001.iml" />
       <module fileurl="file://$PROJECT_DIR$/cloud-service-9001/cloud-service-9001.iml" filepath="$PROJECT_DIR$/cloud-service-9001/cloud-service-9001.iml" />
       <module fileurl="file://$PROJECT_DIR$/cloud-service-9100-config/cloud-service-9100-config.iml" filepath="$PROJECT_DIR$/cloud-service-9100-config/cloud-service-9100-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-service-9200-sentinel/cloud-service-9200-sentinel.iml" filepath="$PROJECT_DIR$/cloud-service-9200-sentinel/cloud-service-9200-sentinel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-service-9300-cloudLock/cloud-service-9300-cloudLock.iml" filepath="$PROJECT_DIR$/cloud-service-9300-cloudLock/cloud-service-9300-cloudLock.iml" />
       <module fileurl="file://$PROJECT_DIR$/cloud2022/cloud2022.iml" filepath="$PROJECT_DIR$/cloud2022/cloud2022.iml" />
     </modules>
   </component>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cloud2022</artifactId>
+        <groupId>cn.com.kai</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../cloud2022/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cloud-service-9300-cloudLock</artifactId>
+
+    <dependencies>
+        <!-- 公用组件 -->
+        <dependency>
+            <groupId>cn.com.kai</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- springboot整合web组件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 热启动 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- spring cloud ailibaba nacos -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!--springboot中的redis依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <exclusions>
+                <!--
+                SpringBoot2默认使用Lettuce作为Redis客户端：
+                Jedis同步，不支持异步，Jedis客户端实例不是线程安全的，需要每个线程一个Jedis实例，一般通过连接池来使用Jedis
+                Lettuce是基于Netty框架的时间驱动，其方法调用是异步的，其API也是线程安全的，多个线程可以操作单个Lettuce连接来完成各种操作；Lettuce也支持连接池。
+                -->
+                <!--<exclusion>-->
+                    <!--<groupId>io.lettuce</groupId>-->
+                    <!--<artifactId>lettuce-core</artifactId>-->
+                <!--</exclusion>-->
+            </exclusions>
+        </dependency>
+        <!--连接池依赖-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

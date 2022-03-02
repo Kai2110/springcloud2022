@@ -1,0 +1,12 @@
+spring:
+  redis:
+    host: 192.168.40.101
+    port: 6379
+    password:
+    timeout: 6000 #连接超时时间：毫秒
+    lettuce:
+      pool:
+        max-active: 8  #最大连接激活数，负数表示无限制
+        max-idle: 8     #最大空闲数
+        max-wait: 100   #最大等待时间，单位毫秒
+        min-idle: 0     #最小空闲活动连接数
