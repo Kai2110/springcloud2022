@@ -5,13 +5,8 @@ spring:
       name: cloud-service-sentinel
    cloud:
       nacos:
-         #将Nacos客服端注册到Nacos服务注册中心
          discovery:
-            server-addr: 127.0.0.1:8848  #Nacos服务端地址
-      sentinel:
-        transport:
-          dashboard: localhost:8080  #配置sentinel服务端的地址信息
-          port: 8719 #默认端口为8719，如果被占用自动从8719开始依次+1，直到找到未被占用的端口
+            server-addr: 127.0.0.1:8848
 management:
    endpoints:
       web:

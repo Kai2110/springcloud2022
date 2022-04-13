@@ -1,6 +1,7 @@
-package cn.com.kai.rpc;
+package cn.com.kai.service;
 
 import cn.com.kai.common.CommonResult;
+import cn.com.kai.service.impl.OpenFeignTestImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

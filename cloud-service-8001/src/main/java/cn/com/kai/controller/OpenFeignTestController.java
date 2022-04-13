@@ -1,14 +1,12 @@
 package cn.com.kai.controller;
 
 import cn.com.kai.common.CommonResult;
-import cn.com.kai.rpc.OpenFeignTest;
-import org.omg.CORBA.TIMEOUT;
+import cn.com.kai.service.OpenFeignTest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.concurrent.TimeUnit;
 
 /**
  * ClassName:OpenFeignTestController

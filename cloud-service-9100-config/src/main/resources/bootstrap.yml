@@ -1,11 +1,14 @@
+server:
+  port: 9100
 spring:
    application:
       name: cloud-service-9100-config
    cloud:
       nacos:
+      #将该服务注册到服务中心
          discovery:
-            #指定Nacos注册中心的地址，将该服务注册到注册中心
             server-addr: 127.0.0.1:8848
+      #配置中心相关配置
          config:
             #指定Nacos配置中心的地址，从配置中心动态获取配置信息
             server-addr: 127.0.0.1:8848

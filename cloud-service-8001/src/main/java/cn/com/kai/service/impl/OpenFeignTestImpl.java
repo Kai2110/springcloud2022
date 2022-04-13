@@ -1,6 +1,7 @@
-package cn.com.kai.rpc;
+package cn.com.kai.service.impl;
 
 import cn.com.kai.common.CommonResult;
+import cn.com.kai.service.OpenFeignTest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RefreshScope
-public class OpenFeignTestImpl implements  OpenFeignTest{
+public class OpenFeignTestImpl implements OpenFeignTest {
 
     @Value("${trouble.msg500}")
     private String msg500;

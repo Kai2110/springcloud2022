@@ -10,6 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * Description:
  *   step01：添加sentinel的依赖包
  *   step02：添加sentinel的配置信息
+ *   step03：编写业务接口
  *
  * @Author:gkr
  * @Date:2022-02-08 15:44

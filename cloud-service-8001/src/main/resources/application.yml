@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+trouble:
+  msg500: 系统繁忙，请稍后再试！
 
 #openFeign远程调用超时处理
 ribbon:

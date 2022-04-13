@@ -57,6 +57,8 @@
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
 
+
+
     </dependencies>
 
 </project>
