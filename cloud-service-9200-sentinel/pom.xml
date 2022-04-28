@@ -45,7 +45,6 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-
         <!-- spring cloud alibaba sentinel -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -56,9 +55,6 @@
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
-
-
-
     </dependencies>
 
 </project>
