@@ -5,9 +5,8 @@ spring:
       name: cloud-base-gateway
    cloud:
       nacos:
-         #将Nacos客服端注册到Nacos服务注册中心
          discovery:
-            server-addr: 127.0.0.1:8848   #Nacos服务端地址
+            server-addr: 127.0.0.1:8848
 management:
    endpoints:
       web:
