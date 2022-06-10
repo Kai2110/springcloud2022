@@ -1,6 +1,5 @@
 package cn.com.kai.service;
 
-import cn.hutool.core.lang.Assert;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,8 @@ public class RedisService {
     private StringRedisTemplate stringRedisTemplate;
 
     public  String  setName(String name){
-        redisTemplate.opsForValue().set("name",name);
+//        redisTemplate.opsForValue().setIfAbsent()
+
         return  redisTemplate.opsForValue().get("name").toString();
     }
 

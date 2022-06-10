@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+
 /**
  * ClassName:RedisController
  * Package:cn.com.kai.controller
@@ -27,6 +28,7 @@ public class RedisController {
     @GetMapping(value="/set/{name}")
     public CommonResult setName(@PathVariable(value="name")String name){
         CommonResult<String> result = new CommonResult<>();
+
         result.setData(redisService.setName(name).toString());
         return result;
     }

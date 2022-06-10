@@ -52,6 +52,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+
         <!--RocketMQ-->
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
