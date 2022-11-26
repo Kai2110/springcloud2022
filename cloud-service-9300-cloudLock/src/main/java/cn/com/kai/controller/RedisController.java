@@ -1,13 +1,12 @@
 package cn.com.kai.controller;
 
-import cn.com.kai.common.CommonResult;
 import cn.com.kai.service.RedisService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import java.util.Set;
 
 
 /**
@@ -22,14 +21,12 @@ import javax.annotation.Resource;
 @RequestMapping(value = "/redis")
 public class RedisController {
 
-    @Resource
+    @Autowired
     private RedisService redisService;
 
-    @GetMapping(value="/set/{name}")
-    public CommonResult setName(@PathVariable(value="name")String name){
-        CommonResult<String> result = new CommonResult<>();
-
-        result.setData(redisService.setName(name).toString());
-        return result;
+    @GetMapping(value = "/getAllKeys")
+    public Set getAllKeys(){
+        return redisService.getAllKeys();
     }
+
 }

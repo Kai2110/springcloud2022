@@ -1,0 +1,12 @@
+Spring-boot2默认使用Lettuce作为Redis客户端：
+    jedis同步，不支持异步，Jedis客户端实例不是线程安全的，需要每个线程一个Jedis实例，一般通过连接池来使用Jedis;
+    lettuce是基于Netty框架的时间驱动，其方法调用是异步的，其API也是线程安全的,多个线程可以操作单个Lettuce连接来完成各种操作；Lettuce也支持连接池。
+一、SpringBoot集成Redis
+   step01:引入Redis依赖和线程池依赖
+   step02:配置Redis连接信息
+   step03:配置RedisTemplate的序列化
+            ——RedisTemplate的key和value可以接受任意的Object对象；
+            ——通过RedisTemplate写入Redis时，会对需要写入的key和value进行序列化，默认情况下会使用JDK默认的序列化器，可能导致中文乱码。
+   step04:注入RedisTemplate进行使用
+
+二、StringRedisTemplate
