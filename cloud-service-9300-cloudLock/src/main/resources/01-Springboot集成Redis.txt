@@ -9,4 +9,6 @@ Spring-boot2默认使用Lettuce作为Redis客户端：
             ——通过RedisTemplate写入Redis时，会对需要写入的key和value进行序列化，默认情况下会使用JDK默认的序列化器，可能导致中文乱码。
    step04:注入RedisTemplate进行使用
 
-二、StringRedisTemplate
+二、StringRedisTemplate(推荐)
+    使用StringRedisTemplate可以节省内存空间，不会使用JSON序列化器来处理value，统一使用String序列化器，只能存储String类型的key和value；
+    如果需要存储java对象时，需要手动完成对象的序列化和反序列化。

@@ -1,12 +1,12 @@
 package cn.com.kai.controller;
 
-import cn.com.kai.service.RedisService;
+import cn.com.kai.domain.Shop;
+import cn.com.kai.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Set;
 
 
 /**
@@ -22,11 +22,11 @@ import java.util.Set;
 public class RedisController {
 
     @Autowired
-    private RedisService redisService;
+    ShopService shopService;
 
-    @GetMapping(value = "/getAllKeys")
-    public Set getAllKeys(){
-        return redisService.getAllKeys();
+    @GetMapping(value = "/{id}")
+    public Shop findById(@PathVariable("id")long id){
+        return shopService.selectById(id);
     }
 
 }
