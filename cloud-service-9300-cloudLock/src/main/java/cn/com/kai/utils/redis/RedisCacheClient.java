@@ -1,12 +1,15 @@
 package cn.com.kai.utils.redis;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -16,7 +19,11 @@ public class RedisCacheClient {
 
     private final StringRedisTemplate stringRedisTemplate;
 
+    private RedisLock redisLock;
+
     private final static  Long CACHE_NULL_TTL = 1l;
+
+    private static final ExecutorService CACHE_REBUILD_EXECUTOR= Executors.newFixedThreadPool(10);
 
     public RedisCacheClient(StringRedisTemplate stringRedisTemplate){
         this.stringRedisTemplate = stringRedisTemplate;
@@ -30,13 +37,23 @@ public class RedisCacheClient {
      * @param unit      时间单位
      * @param random    随机数，防止缓存穿透，根据过期时间和其时间生产一个随机数
      */
-    public void set(String key, Object value, long timeout, TimeUnit unit,long random){
+    private void set(String key, Object value, long timeout, TimeUnit unit,long random){
         stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value),timeout+random,unit);
+    }
+
+    /**
+     * 根据指定的key查询缓存，并反序列化为指定类型，并且设置逻辑过期时间
+     */
+    private void setWithLogicalExpire(String key, Object value, Long timeout, TimeUnit unit){
+        //设置逻辑过期时间
+        RedisData redisData = new RedisData(value, LocalDateTime.now().plusSeconds(unit.toSeconds(timeout)));
+        //写入Redis缓存
+        stringRedisTemplate.opsForValue().set(key,JSONUtil.toJsonStr(redisData));
     }
 
 
     /**
-     * 缓存穿透+缓存雪崩=缓存空值+过期时间+
+     * 缓存穿透+缓存雪崩
      * 根据指定的key查询缓存，并反序列化为指定类型，利用缓存空值的方式解决缓存穿透问题
      */
     public <R,T> R queryWithPassThrough(String keyPrefix, T id, Class<R> clazz, Function<T,R> dbFallback, long timeout, TimeUnit unit, long random) {
@@ -65,19 +82,43 @@ public class RedisCacheClient {
     }
 
     /**
+     * 缓存击穿：热点key问题
      *  将任意对象序列化为json缓存到redis的String类型中，并通过设置过期时间，处理缓存击穿问题（热点key问题）
      */
-    public void setWithLogicalExpire(){
+    public <R,T> R setWithLogicalExpire(String keyPrefix, T id, Class<R> clazz,Function<T,R> fallback,Long timeout, TimeUnit unit){
+        String key = keyPrefix+":"+id;
+        //1.从redis中查询缓存
+        String json = stringRedisTemplate.opsForValue().get(key);
 
-    }
+        //2.判断数据不存在
+        if(StrUtil.isBlank(json)){
+            return null;
+        }
 
-    /**
-     * 根据指定的key查询缓存，并反序列化为指定类型，并利用逻辑过期解决缓存击穿问题
-     */
-    public void setWithLogicalExpire(String key, Object value, Long timeout, TimeUnit unit){
-        //1.设置逻辑过期时间
-        RedisData redisData = new RedisData(value, LocalDateTime.now().plusSeconds(unit.toSeconds(timeout)));
-        //2.写入Redis缓存
-        stringRedisTemplate.opsForValue().set(key,JSONUtil.toJsonStr(redisData));
+        RedisData redisData = JSONUtil.toBean(json, RedisData.class);
+        R r = JSONUtil.toBean((JSONObject) redisData.getData(), clazz);
+        //判断是否逻辑过期
+        LocalDateTime expireTime = redisData.getExpireTime();
+        if(expireTime.isAfter(LocalDateTime.now())){
+            return r;//未过期
+        }
+        //已经过期：获取互斥锁，重构缓存
+        boolean isLock = redisLock.tryLock(key, Thread.currentThread().getName(), 300, TimeUnit.SECONDS);
+        if (isLock){
+            CACHE_REBUILD_EXECUTOR.submit(()->{
+                try {
+                    //查询数据库
+                    R r1 = fallback.apply(id);
+                    //写入数据库（带逻辑时间）
+                    this.setWithLogicalExpire(keyPrefix,r1,timeout,unit);
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }finally {
+                    //释放锁
+                    redisLock.unlock(key,Thread.currentThread().getName());
+                }
+            });
+        }
+        return r;
     }
 }
