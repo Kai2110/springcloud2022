@@ -40,31 +40,13 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!-- spring cloud ailibaba nacos -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-
-        <!--springboot中的redis依赖-->
+        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <exclusions>
-                <!--
-                SpringBoot2默认使用Lettuce作为Redis客户端：
-                Jedis同步，不支持异步，Jedis客户端实例不是线程安全的，需要每个线程一个Jedis实例，一般通过连接池来使用Jedis
-                Lettuce是基于Netty框架的时间驱动，其方法调用是异步的，其API也是线程安全的，多个线程可以操作单个Lettuce连接来完成各种操作；Lettuce也支持连接池。
-                -->
-                <!--<exclusion>-->
-                    <!--<groupId>io.lettuce</groupId>-->
-                    <!--<artifactId>lettuce-core</artifactId>-->
-                <!--</exclusion>-->
-            </exclusions>
         </dependency>
-        <!--连接池依赖-->
         <dependency>
-            <groupId>org.apache.commons</groupId>
+            <groupId>org.apache.commons</groupId>  <!--Redis连接池依赖-->
             <artifactId>commons-pool2</artifactId>
         </dependency>
 

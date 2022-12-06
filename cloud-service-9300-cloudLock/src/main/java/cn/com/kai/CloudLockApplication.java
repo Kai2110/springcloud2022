@@ -2,22 +2,9 @@ package cn.com.kai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-import javax.swing.*;
-
-/**
- * ClassName:CloudLockApplication
- * Package:cn.com.kai
- * Description: springboot集成Redis，及分布式锁的演示
- *
- *
- *
- * @Author:gkr
- * @Date:2022-03-01 23:17
- */
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class CloudLockApplication {
     public static void main(String[] args) {
         SpringApplication.run(CloudLockApplication.class,args);
